@@ -28,7 +28,7 @@ NAME_OF_BALISE = os.getenv('NAME_OF_BALISE')
 COMMIT_MESSAGE = os.getenv('COMMIT_MESSAGE')
 url = "https://api.github.com/users/"+user+"/repos"
 DEL_START  ="<!--"+ NAME_OF_BALISE +"-->"
-DEL_END    ="<!--"+ NAME_OF_BALISE +"-->"
+DEL_END    ="<!--/"+ NAME_OF_BALISE +"-->"
 n = 0
 readmefile=open('README.md','r',encoding='utf-8')
 lines = readmefile.readlines()
@@ -50,7 +50,12 @@ partTwo = lines[end:]
 r = requests.get(url)
 
 repos = []
-for repo in r.json():
+reponse = r.json()
+if 'message' in reponse:
+    print(reponse['message'])
+    exit(1)
+
+for repo in reponse:
     func = lambda : repo['license']['name'] if repo['license'] else None
     repos.append(Project(repo['name'],repo['description'],repo['html_url'],repo['stargazers_count'],repo['language'],func(),repo['languages_url'],user))
 
@@ -87,9 +92,11 @@ if "".join(conttemp) == txt[0]:
     print("No new content")
     exit(0)
 result = partONe + txt + partTwo
+
 readmefile=open('README.md','w',encoding='utf-8')
 readmefile.writelines(result)
 readmefile.close()
+
 os.system('git config --local user.email "github-actions[bot]@users.noreply.github.com"')
 os.system('git config --local user.name "github-actions[bot]"')
 os.system('git add .')
