@@ -13,3 +13,4 @@ jobs:
           with:
             username: 'tot0p'
             include_org_repos: true
+            top: 5

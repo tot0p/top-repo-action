@@ -22,7 +22,11 @@ jobs:
         uses: tot0p/top-repo-action@v1
         with:
             username: tot0p
-            include_org_repos: true
+            include_org_repos: true # Optional (default: false)
+            commit_message : "Update README.md" # Optional (default: "Update README.md with top repositories")
+            name_of_balise : "Top-Repositories" # Optional (default: "Top-Repositories")
+            top : 3 # Optional (default: 3)
+
 
 ```
 

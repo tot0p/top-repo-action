@@ -21,6 +21,10 @@ inputs:
     description: "Commit message"
     required: false
     default: "Update README.md with top repositories"
+  top:
+    description: "Number of top repositories"
+    required: false
+    default: 3
 
 runs:
   using : "composite"
@@ -45,3 +49,4 @@ runs:
         INCLUDE_ORG_REPOS: ${{ inputs.INCLUDE_ORG_REPOS }}
         NAME_OF_BALISE: ${{ inputs.NAME_OF_BALISE }}
         COMMIT_MESSAGE: ${{ inputs.COMMIT_MESSAGE }}
+        TOP: ${{ inputs.TOP }}

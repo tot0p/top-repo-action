@@ -26,6 +26,13 @@ user = os.getenv('USERNAME')
 INCLUDE_ORG_REPOS = os.getenv('INCLUDE_ORG_REPOS')
 NAME_OF_BALISE = os.getenv('NAME_OF_BALISE')
 COMMIT_MESSAGE = os.getenv('COMMIT_MESSAGE')
+
+try :
+    TOP = int(os.getenv('TOP'))
+except:
+    TOP = 3
+    print("TOP not found, set to 3")
+
 url = "https://api.github.com/users/"+user+"/repos"
 DEL_START  ="<!--"+ NAME_OF_BALISE +"-->"
 DEL_END    ="<!--/"+ NAME_OF_BALISE +"-->"
@@ -79,7 +86,9 @@ reposSort = [x for x in reposSort if x.Name != user]
 
 txt = []
 count =0
-for repo in reposSort[:3]:
+if TOP > len(reposSort):
+    TOP = len(reposSort)
+for repo in reposSort[:TOP]:
     count+=1
     txt.append({"Top":count,"Repo":"<a href=\""+repo.Url+"\"><img src=\"https://denvercoder1-github-readme-stats.vercel.app/api/pin/?username="+repo.user+"&repo="+repo.Name+"&theme=dark\" width=\"480px\"/></a>"})
 
