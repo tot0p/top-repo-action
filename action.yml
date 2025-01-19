@@ -33,6 +33,7 @@ runs:
         python -m pip install --upgrade pip
         if [ -f src/requirements.txt ]; then pip install -r src/requirements.txt; fi
     - name: run python
+      shell: bash
       run: |
         python src/main.py
       env :
