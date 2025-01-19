@@ -9,7 +9,7 @@ jobs:
         steps:
         - uses: actions/checkout@v3
         - name: Exemple
-          uses: tot0p/top-repo-action@master
+          uses: tot0p/top-repo-action@main
           with:
             username: 'tot0p'
             include_org_repos: true
