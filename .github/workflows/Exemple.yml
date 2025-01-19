@@ -1,0 +1,15 @@
+name : Exemple
+on:
+  push:
+    branches:
+      - main
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Exemple
+          uses: tot0p/top-repo-action@master
+          with:
+            username: 'tot0p'
+            include_org_repos: true

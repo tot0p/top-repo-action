@@ -1,0 +1,39 @@
+name: "top repo action"
+description: "Create a markdown table in README.md with the top repositories of your GitHub account."
+author: "tot0p"
+branding:
+  icon: "star"
+  color: "blue"
+
+inputs:
+  username:
+    description: "GitHub username"
+    required: true
+  include_org_repos:
+    description: "Include organization repositories"
+    required: false
+    default: false
+  name_of_balise:
+    description: "Name of the balise"
+    required: false
+    default: "Top-Repositories"
+
+runs:
+  using : "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f src/requirements.txt ]; then pip install -r src/requirements.txt; fi
+    - name: run python
+      run: |
+        python src/main.py
+      env :
+        USERNAME: ${{ inputs.USERNAME }}
+        INCLUDE_ORG_REPOS: ${{ inputs.INCLUDE_ORG_REPOS }}
+        NAME_OF_BALISE: ${{ inputs.NAME_OF_BALISE }}
