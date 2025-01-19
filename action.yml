@@ -17,6 +17,10 @@ inputs:
     description: "Name of the balise"
     required: false
     default: "Top-Repositories"
+  commit_message:
+    description: "Commit message"
+    required: false
+    default: "Update README.md with top repositories"
 
 runs:
   using : "composite"
@@ -40,3 +44,4 @@ runs:
         USERNAME: ${{ inputs.USERNAME }}
         INCLUDE_ORG_REPOS: ${{ inputs.INCLUDE_ORG_REPOS }}
         NAME_OF_BALISE: ${{ inputs.NAME_OF_BALISE }}
+        COMMIT_MESSAGE: ${{ inputs.COMMIT_MESSAGE }}

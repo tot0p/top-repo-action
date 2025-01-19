@@ -25,7 +25,7 @@ class Project:
 user = os.getenv('USERNAME')
 INCLUDE_ORG_REPOS = os.getenv('INCLUDE_ORG_REPOS')
 NAME_OF_BALISE = os.getenv('NAME_OF_BALISE')
-
+COMMIT_MESSAGE = os.getenv('COMMIT_MESSAGE')
 url = "https://api.github.com/users/"+user+"/repos"
 DEL_START  ="<!--"+ NAME_OF_BALISE +"-->"
 DEL_END    ="<!--"+ NAME_OF_BALISE +"-->"
@@ -93,5 +93,5 @@ readmefile.close()
 os.system('git config --local user.email "github-actions[bot]@users.noreply.github.com"')
 os.system('git config --local user.name "github-actions[bot]"')
 os.system('git add .')
-os.system('git commit -m "table update"')
+os.system('git commit -m "'+COMMIT_MESSAGE+'"')
 os.system('git push')
